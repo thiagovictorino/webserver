@@ -3,7 +3,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure("2") do |config|
   # other config here
   config.vm.box = "webserver"
-  config.vm.synced_folder "/", "/home/vagrant"
+  config.vm.synced_folder ".", "/home/vagrant"
 #  config.vm.network "public_network", bridge: 'wlan0'
   config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 5432, host: 5432

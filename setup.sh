@@ -43,4 +43,11 @@ sudo aptitude install postgresql-9.1 -y
 
 sudo su -c "psql -c \"CREATE USER powertaxi WITH PASSWORD '010powertaxi123'\"" -s /bin/bash postgres
 
+sudo find /etc/postgresql/9.1/main/ -type f -print0 | sudo xargs -0 sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/g"
+
+sudo su -c "echo 'host    all             all             192.168.1.0/24          trust' >> /etc/postgresql/9.1/main/pg_hba.conf" -s /bin/bash postgres
+sudo su -c "echo 'host    all             all             10.0.2.0/8              trust' >> /etc/postgresql/9.1/main/pg_hba.conf" -s /bin/bash postgres
+
+sudo service postgresql restart
+
 echo "everything OK"
