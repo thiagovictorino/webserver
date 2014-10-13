@@ -12,6 +12,9 @@ dpkg-reconfigure locales
 
 echo "Installing some packages..."
 
+sudo su -c "echo 'America/Sao_Paulo' > /etc/timezone" -s /bin/bash root
+sudo dpkg-reconfigure --frontend noninteractive tzdata 
+
 sudo aptitude install apache2 php5 php5-intl mongodb vim php5-curl -y
 
 echo "Installing java7...\n"
@@ -45,9 +48,13 @@ sudo su -c "psql -c \"CREATE USER powertaxi WITH PASSWORD '010powertaxi123'\"" -
 
 sudo find /etc/postgresql/9.1/main/ -type f -print0 | sudo xargs -0 sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/g"
 
+
 sudo su -c "echo 'host    all             all             192.168.1.0/24          trust' >> /etc/postgresql/9.1/main/pg_hba.conf" -s /bin/bash postgres
 sudo su -c "echo 'host    all             all             10.0.2.0/8              trust' >> /etc/postgresql/9.1/main/pg_hba.conf" -s /bin/bash postgres
 
 sudo service postgresql restart
+
+sudo find /etc/mongodb.conf -type f -print0 | sudo xargs -0 sed -i "s/bind_ip = 127.0.0.1/#bind_ip = 127.0.0.1/g"
+sudo service mongodb restart
 
 echo "everything OK"
