@@ -33,7 +33,7 @@ echo "Configuring the virtual host..."
 
 wget http://images.pontual.taxi.br:8081/web.dev.conf
 
-sudo cp web.dev.conf /etc/apache2/sites-available/
+sudo mv web.dev.conf /etc/apache2/sites-available/
 
 sudo ln -s /etc/apache2/sites-available/web.dev.conf /etc/apache2/sites-enabled/web.dev.conf
 
@@ -57,4 +57,4 @@ sudo service postgresql restart
 sudo find /etc/mongodb.conf -type f -print0 | sudo xargs -0 sed -i "s/bind_ip = 127.0.0.1/#bind_ip = 127.0.0.1/g"
 sudo service mongodb restart
 
-echo "everything OK"
+echo "******** PROCESS FINIHED! ********"
