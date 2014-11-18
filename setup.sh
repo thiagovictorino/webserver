@@ -12,6 +12,8 @@ dpkg-reconfigure locales
 
 echo "Installing some packages..."
 
+sudo apititude update -y
+
 sudo su -c "echo 'America/Sao_Paulo' > /etc/timezone" -s /bin/bash root
 sudo dpkg-reconfigure --frontend noninteractive tzdata 
 
