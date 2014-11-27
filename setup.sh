@@ -17,7 +17,7 @@ sudo apititude update -y
 sudo su -c "echo 'America/Sao_Paulo' > /etc/timezone" -s /bin/bash root
 sudo dpkg-reconfigure --frontend noninteractive tzdata 
 
-sudo aptitude install apache2 php5 php5-intl mongodb vim php5-curl -y
+sudo aptitude install apache2 php5 php5-intl mongodb vim php5-curl memcached php5-memcached -y
 
 echo "Installing java7...\n"
 
