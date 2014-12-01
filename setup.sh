@@ -42,6 +42,8 @@ sudo ln -s /etc/apache2/sites-available/web.dev.conf /etc/apache2/sites-enabled/
 sudo a2enmod rewrite
 sudo service apache2 restart
 
+sudo find /etc/php5/apache2/ -type f -print0 | sudo xargs -0 sed -i "s/short_open_tag = On/short_open_tag = Off/g"
+
 echo "The virtual host created is web.dev.conf"
 
 sudo aptitude install postgresql-9.1 -y
